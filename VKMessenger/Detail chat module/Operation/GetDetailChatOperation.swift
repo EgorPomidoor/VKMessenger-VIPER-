@@ -56,7 +56,6 @@ class GetDetailChatOperation: Operation {
                 
                 CoreDataDetailChatFabric.setDetailChat(id: id, userID: userID, fromID: fromID, body: body, date: date, out: out, readState: readState, context: backgroundContext)
                 arrayWithIDs.add(id)
-              
             }
             
             

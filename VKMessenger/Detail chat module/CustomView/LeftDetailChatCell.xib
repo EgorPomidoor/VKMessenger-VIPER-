@@ -21,10 +21,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oh2-iV-fMF">
-                        <rect key="frame" x="16" y="19" width="111" height="106.5"/>
+                        <rect key="frame" x="16" y="19" width="110.5" height="106.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сообщение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsB-hF-S3k">
-                                <rect key="frame" x="8" y="8" width="95" height="90.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сообщение" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsB-hF-S3k">
+                                <rect key="frame" x="8" y="8" width="94.5" height="90.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -48,7 +48,6 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="labelView" destination="gsB-hF-S3k" id="UL0-ef-rZi"/>
                 <outlet property="lableView" destination="Oh2-iV-fMF" id="3su-YM-o1u"/>
                 <outlet property="messageLabel" destination="gsB-hF-S3k" id="utd-dA-weH"/>
             </connections>

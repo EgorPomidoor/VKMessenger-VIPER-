@@ -39,7 +39,7 @@ extension DetailChatViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-       let model = presenter!.entityAt(indexPath: indexPath) as! DetailChat
+       let model = presenter?.entityAt(indexPath: indexPath) as! DetailChatModel
         
         if model.out == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: kRightCellIdentifier, for: indexPath) as! RightDetailChatCell
@@ -58,9 +58,7 @@ extension DetailChatViewController: UITableViewDataSource {
 //MARK:- протокол DetailChatPresenterOutput
 extension DetailChatViewController: DetailChatPresenterOutput {
     func reloadData() {
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(row: ((self.presenter?.numberOfEntities())! - 1), section: 0), at: UITableViewScrollPosition.bottom, animated: false)
-        }
+            tableView.reloadData()
+            tableView.scrollToRow(at: IndexPath(row: ((self.presenter?.numberOfEntities())! - 1), section: 0), at: UITableViewScrollPosition.bottom, animated: false)
     }
 }

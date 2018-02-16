@@ -13,7 +13,7 @@ class DetailChatPresenter: DetailChatPresenterInput {
     weak var output: DetailChatPresenterOutput?
     var interactor: DetailChatInteractorInput?
     
-    var modelsArray = NSMutableArray()
+    var modelsArray = NSArray()
     
     func getData(offset: Int) {
         interactor?.getData(offset: offset)
@@ -40,8 +40,10 @@ class DetailChatPresenter: DetailChatPresenterInput {
 extension DetailChatPresenter: DetailChatInteractorOutput {
     
     func success(arrayOfMOdels: NSMutableArray) {
-        self.modelsArray = arrayOfMOdels
-        //output?.reloadData()
+        DispatchQueue.main.async {
+            self.modelsArray = arrayOfMOdels
+            self.output?.reloadData()
+        }
     }
     
     func failure(code: Int) {

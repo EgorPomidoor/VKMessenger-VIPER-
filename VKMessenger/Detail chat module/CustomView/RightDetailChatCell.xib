@@ -23,7 +23,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WW0-Sn-xfi">
                         <rect key="frame" x="222.5" y="19" width="110.5" height="129"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сообщение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOd-IH-QRx">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сообщение" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YOd-IH-QRx">
                                 <rect key="frame" x="8" y="8" width="94.5" height="113"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -50,7 +50,6 @@
             <connections>
                 <outlet property="labelView" destination="WW0-Sn-xfi" id="vt7-zC-Bus"/>
                 <outlet property="messageLabel" destination="YOd-IH-QRx" id="Evv-qE-KQV"/>
-                <outlet property="textLabel" destination="YOd-IH-QRx" id="HHD-w3-JQi"/>
             </connections>
             <point key="canvasLocation" x="-133" y="98"/>
         </tableViewCell>

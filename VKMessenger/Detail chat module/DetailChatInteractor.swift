@@ -26,7 +26,6 @@ class DetailChatInteractor: DetailChatInteractorInput {
                 let usualModel = DetailChatModel(id: (coreDataModel?.id)!, userID: (coreDataModel?.userID)!, fromID: (coreDataModel?.fromID)!, body: (coreDataModel?.body)!, date: (coreDataModel?.date)!, out: (coreDataModel?.out)!, readState: (coreDataModel?.readState)!)
                 self.modelsArray.add(usualModel)
             }
-            print(self.modelsArray.count)
             
             self.output?.success(arrayOfMOdels: self.modelsArray)
         }, failure: {(error) in
