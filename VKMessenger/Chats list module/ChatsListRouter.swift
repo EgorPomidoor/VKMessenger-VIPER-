@@ -13,11 +13,11 @@ class ChatsListRouter: ChatsListRouterInterface {
     private let storyboard = UIStoryboard(name: "ChatsList", bundle: nil)
     weak var rootModuleController: UIViewController?
     
-    func showDetails(id: Int64) {
+    func showDetails(idForRequest: Int64, currentChatID: Int64) {
         //роутеру должны передать айдишник (setUpModule в интерактор закинет айдишник, то есть надо, чтобы у DetailChatRouter() метод setUpModule в свои аргументы принимал отсюда id)
         let router = DetailChatRouter()
         
-        rootModuleController?.navigationController?.pushViewController(router.setUpModule(id: id), animated: true)
+        rootModuleController?.navigationController?.pushViewController(router.setUpModule(idForRequest: idForRequest, currentChatID: currentChatID), animated: true)
     }
     
     func setUpModule(from viewController: UIViewController) {

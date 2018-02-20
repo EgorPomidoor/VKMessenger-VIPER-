@@ -36,6 +36,8 @@
 		CEB02217202F9EB40010FAFF /* DetailChatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB02216202F9EB40010FAFF /* DetailChatModel.swift */; };
 		CEB02219202F9FD00010FAFF /* CoreDataDetailChatFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB02218202F9FD00010FAFF /* CoreDataDetailChatFabric.swift */; };
 		CEB0221C202FA26E0010FAFF /* GetDetailChatOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB0221B202FA26E0010FAFF /* GetDetailChatOperation.swift */; };
+		CEBC9052203A3BF00036F91E /* VKMChatTableViewCellWithoutPhoto.xib in Resources */ = {isa = PBXBuildFile; fileRef = CEBC9051203A3BF00036F91E /* VKMChatTableViewCellWithoutPhoto.xib */; };
+		CEBC9054203A3CB20036F91E /* VKMChatTableViewCellWithoutPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEBC9053203A3CB20036F91E /* VKMChatTableViewCellWithoutPhoto.swift */; };
 		CEC30892201753F500B8E618 /* OperationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC30891201753F500B8E618 /* OperationsManager.swift */; };
 		CEC30894201754F700B8E618 /* GetChatOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEC30893201754F700B8E618 /* GetChatOperation.swift */; };
 		CED58FA8201A05F700EE1E8A /* VKMCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CED58FA6201A05F700EE1E8A /* VKMCollectionViewCell.swift */; };
@@ -85,6 +87,8 @@
 		CEB02216202F9EB40010FAFF /* DetailChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailChatModel.swift; sourceTree = "<group>"; };
 		CEB02218202F9FD00010FAFF /* CoreDataDetailChatFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDetailChatFabric.swift; sourceTree = "<group>"; };
 		CEB0221B202FA26E0010FAFF /* GetDetailChatOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetDetailChatOperation.swift; sourceTree = "<group>"; };
+		CEBC9051203A3BF00036F91E /* VKMChatTableViewCellWithoutPhoto.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VKMChatTableViewCellWithoutPhoto.xib; sourceTree = "<group>"; };
+		CEBC9053203A3CB20036F91E /* VKMChatTableViewCellWithoutPhoto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMChatTableViewCellWithoutPhoto.swift; sourceTree = "<group>"; };
 		CEC30891201753F500B8E618 /* OperationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperationsManager.swift; sourceTree = "<group>"; };
 		CEC30893201754F700B8E618 /* GetChatOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetChatOperation.swift; sourceTree = "<group>"; };
 		CED58FA6201A05F700EE1E8A /* VKMCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 			children = (
 				CE1F7B362013937500932657 /* VKMChatTableViewCell.swift */,
 				CE1F7B372013937500932657 /* VKMChatTableViewCell.xib */,
+				CEBC9053203A3CB20036F91E /* VKMChatTableViewCellWithoutPhoto.swift */,
+				CEBC9051203A3BF00036F91E /* VKMChatTableViewCellWithoutPhoto.xib */,
 				CED58FA5201A05CC00EE1E8A /* VKMCollectionViewCell */,
 			);
 			path = CustomView;
@@ -380,6 +386,7 @@
 				CE2965CB20303F83008B5FA4 /* RightDetailChatCell.xib in Resources */,
 				CE90F18C200B7A3E0060B8FA /* LaunchScreen.storyboard in Resources */,
 				CE90F189200B7A3E0060B8FA /* Assets.xcassets in Resources */,
+				CEBC9052203A3BF00036F91E /* VKMChatTableViewCellWithoutPhoto.xib in Resources */,
 				CE1F7B392013937500932657 /* VKMChatTableViewCell.xib in Resources */,
 				CE90F187200B7A3E0060B8FA /* Main.storyboard in Resources */,
 				CED58FA9201A05F700EE1E8A /* VKMCollectionViewCell.xib in Resources */,
@@ -476,6 +483,7 @@
 				CE31A13520110C48005209DD /* VKMConst.swift in Sources */,
 				CE1F7B382013937500932657 /* VKMChatTableViewCell.swift in Sources */,
 				CEC30892201753F500B8E618 /* OperationsManager.swift in Sources */,
+				CEBC9054203A3CB20036F91E /* VKMChatTableViewCellWithoutPhoto.swift in Sources */,
 				CE911FF82029B6D60008410D /* DetailChatInteractor.swift in Sources */,
 				CE1F7B222012A25700932657 /* CoreDataChatFabric.swift in Sources */,
 				CEB0221C202FA26E0010FAFF /* GetDetailChatOperation.swift in Sources */,

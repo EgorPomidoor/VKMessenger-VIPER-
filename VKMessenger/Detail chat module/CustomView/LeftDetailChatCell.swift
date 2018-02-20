@@ -21,7 +21,7 @@ class LeftDetailChatCell: UITableViewCell {
         lableView.clipsToBounds = true
     }
 
-    func configureSelf(model: DetailChatModel) {
+    func configureSelf(model: DetailChat) {
         messageLabel.text = model.body
     }
     

@@ -10,6 +10,13 @@ import UIKit
 
 protocol DetailChatPresenterOutput: class {
     func reloadData()
+    func beginUpdates()
+    func insert(at: IndexPath)
+    func delete(at: IndexPath)
+    func move(at: IndexPath, to: IndexPath)
+    func update(at: IndexPath)
+    func endUpdates()
+    
 }
 
 protocol DetailChatPresenterInput: class {
@@ -23,10 +30,10 @@ protocol DetailChatInteractorInput: class {
 }
 
 protocol DetailChatInteractorOutput: class {
-    func success(arrayOfMOdels: NSMutableArray)
+    func success(idForFRC id: Int64)
     func failure(code: Int)
 }
 
 protocol DetailChatRouterInterface: class {
-    func setUpModule(id: Int64) -> UIViewController
+    func setUpModule(idForRequest: Int64, currentChatID: Int64) -> UIViewController
 }

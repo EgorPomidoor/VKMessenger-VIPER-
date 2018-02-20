@@ -50,21 +50,66 @@ class GetChatOperation: Operation {
                 
                 var chatID = Int64(000)
                 var multichatPhoto = "empty"
-                let ID = message["id"].int64Value
-                let snippet = message["body"].stringValue
                 let timestamp = message["date"].int64Value
                 let out = message["out"].int64Value
+                let userID = message["user_id"].int64Value
+                let title = message["title"].stringValue
+                let readState = message["read_state"].int64Value
+                var snippet = message["body"].stringValue
+                
+                if snippet == "" {
+                    let fwdMessages = message["fwdMessages"].arrayValue
+                    let attachment = message["attachments"].arrayValue
+                    var tempBody = ""
+                    
+                    for attach in attachment {
+                        let type = attach["type"].stringValue
+                        
+                        switch type {
+                        case "photo" :
+                            tempBody = "Фотография"
+                        case "video":
+                            tempBody = "Видеозапись"
+                        case "audio":
+                            tempBody = "Аудиозапись"
+                        case "doc":
+                            tempBody = "Документ"
+                        case "link":
+                            tempBody = "Ссылка"
+                        case "market":
+                            tempBody = "Товар"
+                        case "market_album":
+                            tempBody = "Подборка товаров"
+                        case "wall":
+                            tempBody = "Запись на стене"
+                        case "wall_reply":
+                            tempBody = "Комментарий на стене"
+                        case "sticker":
+                            tempBody = "Стикер"
+                        case "gift":
+                            tempBody = "Подарок"
+                        default:
+                            return
+                        }
+                        
+                        
+                        if snippet == "" {
+                            snippet = tempBody
+                        } else {
+                            snippet = snippet + ", " + tempBody
+                        }
+                    }
+                    
+                    if message["fwd_messages"] != nil {
+                        snippet = "Пересланное сообщение"
+                    }
+                }
                 
                 if message["photo_100"] != nil {
                     multichatPhoto = message["photo_100"].stringValue
                 }
                 
-                var senderID = message["user_id"].int64Value
-                let title = message["title"].stringValue
-                
-                
                 if message["chat_id"] != nil {
-                    var usersStringForChat = ""
                     
                     let type = "Multichat"
                     let users = message["chat_active"].arrayValue
@@ -72,14 +117,13 @@ class GetChatOperation: Operation {
                     
                     for user in users {
                         stringForGetUsers += "\(user.stringValue),"
-                        usersStringForChat += "\(user.stringValue),"
                     }
-        
-                    CoreDataChatFabric.setChat(id: ID, senderID: senderID, out: out, snippet: snippet, timestamp: timestamp, title: title, type: type, userIDs: usersStringForChat, chatID: chatID, multichatPhoto: multichatPhoto, context: backgroundContex)
-                    let chat = CoreDataChatFabric.getChat(id: ID, contex: backgroundContex)
+                    
+                    CoreDataChatFabric.setChat(id: chatID, userID: userID, out: out, snippet: snippet, timestamp: timestamp, title: title, type: type, chatID: chatID, multichatPhoto: multichatPhoto, readState: readState, context: backgroundContex)
+                    let chat = CoreDataChatFabric.getChat(id: chatID, contex: backgroundContex)
                     
                     let set = NSSet()
-
+                    
                     for user in users {
                         let userID = Int64(user.stringValue)!
                         CoreDataUserFabric.setUser(id: userID, name: "", avatarURL: "", context: backgroundContex)
@@ -88,32 +132,16 @@ class GetChatOperation: Operation {
                         user?.addToChats(chat!)
                         set.adding(user)
                     }
-
+                    
                     chat?.addToUsers(set)
-                    //проверка -------------------------------------------------------
-                    let fuck = chat!.users?.allObjects as! [User]
-                    //print(fuck.count)
-                    for fr in fuck {
-                        //print (fr.id,fr.name)
-                    }
-                    //-------------------------------------------------------------
+                    
                 } else {
                     
-                    var usersStringForChat = ""
-                    
                     let type = "Dialogue"
-                    stringForGetUsers += "\(senderID),"
-                    usersStringForChat += "\(senderID),"
+                    stringForGetUsers += "\(userID),"
                     
-                    let userID = senderID
-                    
-//                    if message["out"].int64Value == 1 {
-//                        senderID = Int64(VKMAuthService.sharedInstance.getMyID())!
-//                    }
-                    
-                    
-                    CoreDataChatFabric.setChat(id: ID, senderID: senderID, out: out, snippet: snippet, timestamp: timestamp, title: title, type: type, userIDs: usersStringForChat, chatID: chatID, multichatPhoto: multichatPhoto, context: backgroundContex)
-                    let chat = CoreDataChatFabric.getChat(id: ID, contex: backgroundContex)
+                    CoreDataChatFabric.setChat(id: userID, userID: userID, out: out, snippet: snippet, timestamp: timestamp, title: title, type: type, chatID: chatID, multichatPhoto: multichatPhoto, readState: readState, context: backgroundContex)
+                    let chat = CoreDataChatFabric.getChat(id: userID, contex: backgroundContex)
                     CoreDataUserFabric.setUser(id: userID, name: "", avatarURL: "", context: backgroundContex)
                     let user = CoreDataUserFabric.getUser(id: userID, contex: backgroundContex)
                     chat?.addToUsers(user!)
@@ -128,9 +156,8 @@ class GetChatOperation: Operation {
                 
             } else {
                 
-            self.getUsers(idsString: stringForGetUsers, semaphore: semaphore, backgroundContext: backgroundContex)
-            //print(usersString)
-            self.success()
+                self.getUsers(idsString: stringForGetUsers, semaphore: semaphore, backgroundContext: backgroundContex)
+                self.success()
                 
             }
             
@@ -158,11 +185,10 @@ class GetChatOperation: Operation {
                 let avatarURL = user["photo_100"].stringValue
                 
                 CoreDataUserFabric.setUser(id: userId, name: name, avatarURL: avatarURL, context: backgroundContext)
-//                let man = CoreDataUserFabric.getUser(id: userId, contex: backgroundContext)
-//                print(man?.name)
             }
             _ = try? backgroundContext.save()
             semaphore.signal()
+            
         }, failure: {kek in})
         
     }

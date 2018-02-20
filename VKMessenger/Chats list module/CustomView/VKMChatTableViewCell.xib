@@ -53,26 +53,43 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сообщение" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11B-bH-d6X">
-                        <rect key="frame" x="143" y="58" width="327" height="21"/>
+                        <rect key="frame" x="143" y="58" width="322" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dot" translatesAutoresizingMaskIntoConstraints="NO" id="Yhp-hZ-axx">
+                        <rect key="frame" x="475" y="63.5" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="ZQa-dt-nC4"/>
+                            <constraint firstAttribute="height" constant="10" id="swm-ac-KIy"/>
+                        </constraints>
+                    </imageView>
+                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m5i-Kq-Vf7">
+                        <rect key="frame" x="143" y="50" width="322" height="37.5"/>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstItem="JMB-8c-rDI" firstAttribute="leading" secondItem="wqq-5k-HND" secondAttribute="trailing" constant="20" id="2l5-do-SyR"/>
                     <constraint firstItem="wqq-5k-HND" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="306-co-TjB"/>
                     <constraint firstItem="wqq-5k-HND" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="3cZ-bk-5JG"/>
                     <constraint firstItem="uBQ-hT-HO8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="6qF-HI-L2d"/>
+                    <constraint firstItem="Yhp-hZ-axx" firstAttribute="leading" secondItem="11B-bH-d6X" secondAttribute="trailing" constant="10" id="ASc-iX-aTR"/>
                     <constraint firstItem="JMB-8c-rDI" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="25" id="F1w-Co-AiE"/>
+                    <constraint firstItem="m5i-Kq-Vf7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="50" id="LOt-de-pED"/>
                     <constraint firstAttribute="bottom" secondItem="Zde-0M-7ee" secondAttribute="bottom" constant="34.5" id="OGg-iI-ibk"/>
                     <constraint firstAttribute="trailing" secondItem="uBQ-hT-HO8" secondAttribute="trailing" constant="30" id="RXo-bc-jcF"/>
+                    <constraint firstAttribute="bottom" secondItem="m5i-Kq-Vf7" secondAttribute="bottom" constant="30" id="TZC-nK-NYG"/>
                     <constraint firstItem="11B-bH-d6X" firstAttribute="top" secondItem="JMB-8c-rDI" secondAttribute="bottom" constant="12.5" id="WN7-nt-UB9"/>
                     <constraint firstAttribute="bottom" secondItem="11B-bH-d6X" secondAttribute="bottom" constant="38.5" id="Ya6-e5-4Vv"/>
-                    <constraint firstAttribute="trailing" secondItem="11B-bH-d6X" secondAttribute="trailing" constant="20" id="ZF5-BS-liT"/>
                     <constraint firstItem="11B-bH-d6X" firstAttribute="leading" secondItem="wqq-5k-HND" secondAttribute="trailing" constant="58" id="bds-Ss-cca"/>
+                    <constraint firstItem="Yhp-hZ-axx" firstAttribute="leading" secondItem="m5i-Kq-Vf7" secondAttribute="trailing" constant="10" id="mUq-Kp-NCC"/>
+                    <constraint firstItem="Yhp-hZ-axx" firstAttribute="centerY" secondItem="11B-bH-d6X" secondAttribute="centerY" id="oFS-7u-7kQ"/>
                     <constraint firstItem="Zde-0M-7ee" firstAttribute="leading" secondItem="JMB-8c-rDI" secondAttribute="leading" id="ooV-hv-JNa"/>
+                    <constraint firstItem="m5i-Kq-Vf7" firstAttribute="leading" secondItem="Zde-0M-7ee" secondAttribute="trailing" constant="8" id="qvN-x5-3T8"/>
                     <constraint firstAttribute="trailing" secondItem="JMB-8c-rDI" secondAttribute="trailing" constant="20" id="tnU-5X-Zwe"/>
+                    <constraint firstAttribute="trailing" secondItem="Yhp-hZ-axx" secondAttribute="trailing" constant="5" id="u1S-dc-dWs"/>
                     <constraint firstItem="Zde-0M-7ee" firstAttribute="centerY" secondItem="11B-bH-d6X" secondAttribute="centerY" id="wv4-wL-ndJ"/>
                 </constraints>
             </tableViewCellContentView>
@@ -81,11 +98,16 @@
                 <outlet property="collectionView" destination="wqq-5k-HND" id="Npy-vc-5nH"/>
                 <outlet property="dateLabel" destination="uBQ-hT-HO8" id="Kf8-R8-orV"/>
                 <outlet property="nameLabel" destination="JMB-8c-rDI" id="DXN-Iy-QQz"/>
+                <outlet property="readStateImageView" destination="Yhp-hZ-axx" id="yTR-fD-NsQ"/>
+                <outlet property="readStateView" destination="m5i-Kq-Vf7" id="y9p-Ta-DSN"/>
                 <outlet property="snippetConstraint" destination="bds-Ss-cca" id="0bt-sr-b2T"/>
                 <outlet property="snippetLabel" destination="11B-bH-d6X" id="Dke-eW-XCT"/>
                 <outlet property="userImageView" destination="Zde-0M-7ee" id="iwP-IQ-iYe"/>
             </connections>
-            <point key="canvasLocation" x="-6" y="-153"/>
+            <point key="canvasLocation" x="17" y="-149"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="dot" width="120" height="120"/>
+    </resources>
 </document>

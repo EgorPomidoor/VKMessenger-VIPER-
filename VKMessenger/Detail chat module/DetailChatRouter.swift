@@ -12,12 +12,13 @@ class DetailChatRouter: DetailChatRouterInterface {
     
     private let storyboard = UIStoryboard(name: "DetailChat", bundle: nil)
     
-    func setUpModule(id: Int64) -> UIViewController {
+    func setUpModule(idForRequest: Int64, currentChatID: Int64) -> UIViewController {
         
         let initialController = storyboard.instantiateViewController(withIdentifier: "detailChatVC") as! DetailChatViewController
-        let presenter = DetailChatPresenter()
+        let presenter = DetailChatPresenter(idForFRC: currentChatID)
         let interactor = DetailChatInteractor()
-        interactor.idFromPreviousVC = id
+        interactor.idForRequest = idForRequest
+        interactor.chatID = currentChatID
         
         initialController.presenter = presenter
         

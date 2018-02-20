@@ -15,9 +15,10 @@ protocol ChatsListPresenterOutput: class {
     func delete(at: IndexPath ) -> Void
     func move(at: IndexPath , to : IndexPath ) -> Void
     func update(at: IndexPath ) -> Void
+    func endRefreshing()
 }
 
-protocol ChatsListPresenterInput: class {
+ protocol ChatsListPresenterInput: class {
     func getData(offset: Int)
     func numberOfEntities() -> Int
     func entityAt(indexPath: IndexPath) -> Any?
@@ -34,7 +35,7 @@ protocol ChatsListInteractorInput {
 
 protocol ChatsListRouterInterface : class
 {
-    func showDetails(id : Int64 )
+    func showDetails(idForRequest: Int64, currentChatID: Int64)
     func setUpModule(from viewController : UIViewController )
     func setUpModule() -> UIViewController
 }

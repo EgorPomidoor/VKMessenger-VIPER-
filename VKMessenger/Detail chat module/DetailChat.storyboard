@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="HelveticaNeue.ttc">
+            <string>HelveticaNeue-Bold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Detail Chat View Controller-->
         <scene sceneID="Shq-t6-0l3">
@@ -18,27 +23,68 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iOy-F1-K0q">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iOy-F1-K0q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="617"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pni-vx-W5e">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Введите сообщение..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5iQ-2s-KUX">
+                                        <rect key="frame" x="3" y="3" width="285" height="44"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qZF-m1-wQD">
+                                        <rect key="frame" x="293" y="5" width="77" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.3529411764705882" blue="0.030862074411384551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                        <state key="normal" title="Отправить">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="5iQ-2s-KUX" firstAttribute="leading" secondItem="Pni-vx-W5e" secondAttribute="leading" constant="3" id="2ZR-t5-84v"/>
+                                    <constraint firstAttribute="bottom" secondItem="qZF-m1-wQD" secondAttribute="bottom" constant="5" id="8Ea-Dm-QcD"/>
+                                    <constraint firstAttribute="height" constant="50" id="Dfk-dX-2pZ"/>
+                                    <constraint firstAttribute="trailing" secondItem="qZF-m1-wQD" secondAttribute="trailing" constant="5" id="HYF-XT-7wW"/>
+                                    <constraint firstAttribute="bottom" secondItem="5iQ-2s-KUX" secondAttribute="bottom" constant="3" id="L85-1e-D73"/>
+                                    <constraint firstAttribute="trailing" secondItem="5iQ-2s-KUX" secondAttribute="trailing" constant="87" id="X1A-v0-967"/>
+                                    <constraint firstItem="qZF-m1-wQD" firstAttribute="leading" secondItem="5iQ-2s-KUX" secondAttribute="trailing" constant="5" id="Yck-YX-XZW"/>
+                                    <constraint firstItem="5iQ-2s-KUX" firstAttribute="top" secondItem="Pni-vx-W5e" secondAttribute="top" constant="3" id="Z1E-Qh-D1J"/>
+                                    <constraint firstItem="qZF-m1-wQD" firstAttribute="top" secondItem="Pni-vx-W5e" secondAttribute="top" constant="5" id="uQ4-CD-vhX"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="Pni-vx-W5e" firstAttribute="trailing" secondItem="CAd-lP-N4p" secondAttribute="trailing" id="00P-qA-rqs"/>
                             <constraint firstItem="iOy-F1-K0q" firstAttribute="leading" secondItem="CAd-lP-N4p" secondAttribute="leading" id="14j-6Q-64G"/>
-                            <constraint firstItem="CAd-lP-N4p" firstAttribute="bottom" secondItem="iOy-F1-K0q" secondAttribute="bottom" id="1rn-zN-RPg"/>
+                            <constraint firstItem="Pni-vx-W5e" firstAttribute="leading" secondItem="CAd-lP-N4p" secondAttribute="leading" id="5RF-kB-eNK"/>
                             <constraint firstItem="CAd-lP-N4p" firstAttribute="trailing" secondItem="iOy-F1-K0q" secondAttribute="trailing" id="EAv-3L-GSO"/>
                             <constraint firstItem="iOy-F1-K0q" firstAttribute="top" secondItem="xlC-t4-Fwh" secondAttribute="top" id="KG0-BX-FoV"/>
+                            <constraint firstItem="Pni-vx-W5e" firstAttribute="bottom" secondItem="CAd-lP-N4p" secondAttribute="bottom" id="P5o-nD-DbH"/>
+                            <constraint firstItem="Pni-vx-W5e" firstAttribute="top" secondItem="iOy-F1-K0q" secondAttribute="bottom" id="Qrc-aF-fTy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CAd-lP-N4p"/>
                     </view>
                     <connections>
+                        <outlet property="movableConstraint" destination="P5o-nD-DbH" id="fQU-52-NYq"/>
                         <outlet property="tableView" destination="iOy-F1-K0q" id="boe-PH-s0V"/>
+                        <outlet property="viewForTextField" destination="Pni-vx-W5e" id="38x-RE-5gP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rML-RC-hwZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-102" y="156"/>
+            <point key="canvasLocation" x="-103.2" y="155.17241379310346"/>
         </scene>
     </scenes>
 </document>

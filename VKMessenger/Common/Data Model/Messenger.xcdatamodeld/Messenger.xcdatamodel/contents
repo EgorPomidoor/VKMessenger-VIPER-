@@ -5,13 +5,13 @@
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="multichatPhoto" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="out" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="senderID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="readState" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="snippet" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="timestamp" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="type" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="userIDs" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="chats" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DetailChat" inverseName="dialogs" inverseEntity="DetailChat" syncable="YES"/>
+        <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="messages" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="DetailChat" inverseName="mainDialog" inverseEntity="DetailChat" syncable="YES"/>
         <relationship name="users" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="User" inverseName="chats" inverseEntity="User" syncable="YES"/>
     </entity>
     <entity name="DetailChat" representedClassName="DetailChat" syncable="YES" codeGenerationType="class">
@@ -22,7 +22,7 @@
         <attribute name="out" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="readState" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="userID" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <relationship name="dialogs" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="chats" inverseEntity="Chat" syncable="YES"/>
+        <relationship name="mainDialog" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Chat" inverseName="messages" inverseEntity="Chat" syncable="YES"/>
     </entity>
     <entity name="User" representedClassName="User" syncable="YES" codeGenerationType="class">
         <attribute name="avatarURL" optional="YES" attributeType="String" syncable="YES"/>

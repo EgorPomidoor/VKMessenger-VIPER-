@@ -26,7 +26,6 @@ class ChatsListPresenter: NSObject, ChatsListPresenterInput {
         return frc
     }()
     
-    
     func getData(offset: Int) {
         interactot?.getData(offset: offset)
     }
@@ -50,39 +49,49 @@ class ChatsListPresenter: NSObject, ChatsListPresenterInput {
 extension ChatsListPresenter: NSFetchedResultsControllerDelegate {
     
     func controllerWillChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        output?.beginUpdates()
+        DispatchQueue.main.async {
+            self.output?.beginUpdates()
+        }
     }
     
     func controller(_ controller: NSFetchedResultsController<NSFetchRequestResult>, didChange anObject: Any, at indexPath: IndexPath?, for type: NSFetchedResultsChangeType, newIndexPath: IndexPath?) {
         
-        switch type {
-        case .insert:
-            output?.insert(at: newIndexPath!)
-        case .update:
-            output?.update(at: indexPath!)
-        case .move:
-            output?.move(at: indexPath!, to: newIndexPath!)
-        case .delete:
-            output?.delete(at: indexPath!)
-        default:
-            return
+        DispatchQueue.main.async {
+            switch type {
+            case .insert:
+                self.output?.insert(at: newIndexPath!)
+            case .update:
+                self.output?.update(at: indexPath!)
+            case .move:
+                self.output?.move(at: indexPath!, to: newIndexPath!)
+            case .delete:
+                self.output?.delete(at: indexPath!)
+            default:
+                return
+            }
         }
-        
     }
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
-        output?.endUpdates()
+        DispatchQueue.main.async {
+            self.output?.endUpdates()
+        }
     }
-    
 }
 
 //MARK:- протокол ChatsListInteractorOutput
 extension ChatsListPresenter: ChatsListInteractorOutput {
     func success() {
         CoreDataManager.sharedInstance.save()
+        DispatchQueue.main.async {
+            self.output?.endRefreshing()
+        }
     }
     
     func failure(code: Int) {
         print("код ошибки: \(code)")
+        DispatchQueue.main.async {
+            self.output?.endRefreshing()
+        }
     }
 }

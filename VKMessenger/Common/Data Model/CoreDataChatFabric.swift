@@ -9,7 +9,7 @@
 import CoreData
 class CoreDataChatFabric {
     
-    class func setChat (id: Int64, senderID: Int64, out: Int64, snippet: String, timestamp: Int64, title: String, type: String, userIDs: String, chatID: Int64, multichatPhoto: String, context: NSManagedObjectContext) {
+    class func setChat (id: Int64, userID: Int64, out: Int64, snippet: String, timestamp: Int64, title: String, type: String, chatID: Int64, multichatPhoto: String, readState: Int64, context: NSManagedObjectContext) {
         
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
         let predicate = NSPredicate(format: "id=%lld", id)
@@ -21,27 +21,27 @@ class CoreDataChatFabric {
             let chat = NSEntityDescription.insertNewObject(forEntityName: "Chat", into: context) as! Chat
             
             chat.id = id
-            chat.senderID = senderID
+            chat.userID = userID
             chat.snippet = snippet
             chat.timestamp = timestamp
             chat.title = title
             chat.type = type
-            chat.userIDs = userIDs
             chat.multichatPhoto = multichatPhoto
             chat.out = out
             chat.chatID = chatID
+            chat.readState = readState
         } else {
             let chat = fetchResults![0]
             
-            chat.senderID = senderID
+            chat.userID = userID
             chat.snippet = snippet
             chat.timestamp = timestamp
             chat.title = title
             chat.type = type
-            chat.userIDs = userIDs
             chat.multichatPhoto = multichatPhoto
             chat.out = out
             chat.chatID = chatID
+            chat.readState = readState
         }
     }
     
@@ -53,10 +53,33 @@ class CoreDataChatFabric {
         
         let fetchResults = try? contex.fetch(fetchRequest) as! [Chat]
         
-        return fetchResults!.count == 0 ? nil: fetchResults![0]
+        return fetchResults!.count == 0 ? nil : fetchResults![0]
     }
     
-    class func addMessages(id: Int64, set: NSMutableSet) {
+    
+    class func addMessagesToChat (chatID id: Int64, messagesSet set: NSMutableSet, context: NSManagedObjectContext) {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Chat")
+        let predicate = NSPredicate(format: "id=%lld", id)
+        fetchRequest.predicate = predicate
         
+        let fetchResults = try? context.fetch(fetchRequest) as! [Chat]
+        
+        let chat = fetchResults![0]
+        chat.addToMessages(set)
+    }
+    
+    class func hasMessages (chatID: Int64, context: NSManagedObjectContext) -> Bool {
+        
+        let chat = getChat(id: chatID, contex: context)
+        
+        if chat != nil {
+            if chat!.messages != nil {
+                return chat!.messages!.allObjects.count != 0
+            } else {
+                return false
+            }
+        } else {
+            return false
+        }
     }
 }

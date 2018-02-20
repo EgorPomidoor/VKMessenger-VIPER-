@@ -15,16 +15,18 @@ class GetDetailChatOperation: Operation {
     var failure: (Int) -> Void
     var count: Int
     var offset: Int
-    var idFromPreviousVC: Int64
+    var idForRequest: Int64
+    var chatID: Int64
     
     var urlSessionDataTask: URLSessionDataTask?
     
-    init (count: Int, offset: Int, idFromPreviousVC: Int64, success:@escaping (NSMutableArray) -> Void, failure:@escaping (Int) -> Void) {
+    init (count: Int, offset: Int, idForRequest: Int64, chatID: Int64, success:@escaping (NSMutableArray) -> Void, failure:@escaping (Int) -> Void) {
         self.count = count
         self.offset = offset
-        self.idFromPreviousVC = idFromPreviousVC
+        self.idForRequest = idForRequest
         self.success = success
         self.failure = failure
+        self.chatID = chatID
         
         super.init()
     }
@@ -38,12 +40,13 @@ class GetDetailChatOperation: Operation {
         
         let semaphore = DispatchSemaphore(value: 0)
         
-        let arrayWithIDs = NSMutableArray()
+        let arrayWithIDs = NSMutableArray() // не нужен (так как убрали обычные модели)
         let backgroundContext = CoreDataManager.sharedInstance.getBackgroundContext()
         
-        API_WRAPPER.getDetailChat(id: idFromPreviousVC, count: count, offset: offset, success: { (response) in
+        API_WRAPPER.getDetailChat(id: idForRequest, count: count, offset: offset, success: { (response) in
             
             let items = response["response"]["items"].arrayValue
+            let set = NSMutableSet()
                         
             for item in items {
                 let id = item["id"].int64Value
@@ -56,12 +59,18 @@ class GetDetailChatOperation: Operation {
                 
                 CoreDataDetailChatFabric.setDetailChat(id: id, userID: userID, fromID: fromID, body: body, date: date, out: out, readState: readState, context: backgroundContext)
                 arrayWithIDs.add(id)
+                
+                let message = CoreDataDetailChatFabric.getDetailChat(id: id, context: backgroundContext)
+                set.add(message)
             }
             
             
             if self.isCancelled {
                 self.success(arrayWithIDs)
             } else {
+                
+                CoreDataChatFabric.addMessagesToChat(chatID: self.chatID, messagesSet: set, context: backgroundContext)
+                
                 _ = try? backgroundContext.save()
                 self.success(arrayWithIDs)
             }

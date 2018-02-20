@@ -16,8 +16,8 @@ class DataManager {
         OperationsManager.addOperation(operation: operation, cancellingQueue: true)
     }
     
-    class func getDetailChat(idFromPreviousVC: Int64, count: Int, offset: Int, success: @escaping (NSArray) -> Void, failure: @escaping (Int) -> Void) {
-        let operation = GetDetailChatOperation(count: count, offset: offset, idFromPreviousVC: idFromPreviousVC, success: success, failure: failure)
+    class func getDetailChat(idForRequest: Int64, chatID: Int64, count: Int, offset: Int, success: @escaping (NSArray) -> Void, failure: @escaping (Int) -> Void) {
+        let operation = GetDetailChatOperation(count: count, offset: offset, idForRequest: idForRequest, chatID: chatID, success: success, failure: failure)
         OperationsManager.addOperation(operation: operation, cancellingQueue: true)
     }
 }
