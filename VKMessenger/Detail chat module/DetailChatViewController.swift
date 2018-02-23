@@ -30,31 +30,13 @@ class DetailChatViewController: UIViewController {
     @IBOutlet weak var movableConstraint: NSLayoutConstraint!
     @IBOutlet weak var viewForTextField: UIView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var sendButton: UIButton!
+    
     let kRightCellNIB = UINib(nibName: "RightDetailChatCell", bundle: nil)
     let kRightCellIdentifier = "RightCellIdentifier"
     let kLeftCellNIB = UINib(nibName: "LeftDetailChatCell", bundle: nil)
     let kLeftCellIdentifier = "LeftCellIdentifier"
-    
-    let messageInputContainerView: UIView = {
-        let view = UIView()
-        view.backgroundColor = UIColor.white
-        return view
-    }()
-    
-    let inputTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Введите сообщение..."
-        return textField
-    }()
-    
-    let sendButton: UIButton = {
-        let button = UIButton(type: UIButtonType.system)
-        button.setTitle("Отправить", for: .normal)
-        let titleColor = UIColor(red: 0, green: 137/255, blue: 249/255, alpha: 1)
-        button.setTitleColor(titleColor, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        return button
-    }()
     
     let topBorderView: UIView = {
         let topView = UIView()
@@ -62,7 +44,13 @@ class DetailChatViewController: UIViewController {
         return topView
     }()
     
-    var bottomConstraint: NSLayoutConstraint?
+    let leftBarButtonItem: UIBarButtonItem = {
+        let item = UIBarButtonItem(title: "Add", style: .plain, target: self, action: #selector(addTapped))
+        
+        return item
+    }()
+    
+   // let colletionView = UICollectionView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,37 +60,35 @@ class DetailChatViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
+        textField.delegate = self
+        
         presenter?.getData(offset: 0)
-        
         setUpInputComponents()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: .UIKeyboardWillHide, object: nil)
+        notificationCenter()
     }
     
-    //программно инициализируем view, внутри которого программно иницализируем textField и button
+    //программно инициализируем view, который является прослойкой м/у таблицей и вью текст филда
     private func setUpInputComponents() {
-//        view.addSubview(messageInputContainerView)
-//        view.addConstraintsWithFormat("H:|[v0]|", views: messageInputContainerView)
-//        view.addConstraintsWithFormat("V:[v0(48)]", views: messageInputContainerView)
-//
-//        bottomConstraint = NSLayoutConstraint(item: messageInputContainerView, attribute: .bottom, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
-//        view.addConstraint(bottomConstraint!)
-//
-//        messageInputContainerView.addSubview(inputTextField)
-//        messageInputContainerView.addSubview(sendButton)
-//        messageInputContainerView.addSubview(topBorderView)
-//        viewForTextField.addSubview(inputTextField)
-//        viewForTextField.addSubview(sendButton)
-//
-//        viewForTextField.addConstraintsWithFormat("H:|-8-[v0][v1(90)]|", views: inputTextField, sendButton)
-//        viewForTextField.addConstraintsWithFormat("V:|[v0]|", views: inputTextField)
-//        viewForTextField.addConstraintsWithFormat("V:|[v0]|", views: sendButton)
         viewForTextField.addSubview(topBorderView)
 
         viewForTextField.addConstraintsWithFormat("H:|[v0]|", views: topBorderView)
         viewForTextField.addConstraintsWithFormat("V:|[v0(1)]", views: topBorderView)
         
+        sendButton.isEnabled = false
+//        let add = UIBarButtonItem(barButtonSystemItem: .undo, target: self, action: #selector(addTapped))
+//        let play = UIBarButtonItem(title: "Play", style: .plain, target: self, action: #selector(addTapped))
+//
+//        navigationItem.rightBarButtonItems = [add, play]
+//        
+//        let collection = UIBarButtonItem.init(customView: colletionView)
+//        navigationItem.leftBarButtonItem = collection
+        
+    }
+    
+    
+    private func notificationCenter() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardNotification), name: .UIKeyboardWillHide, object: nil)
     }
     
     //функция для notificationCenter
@@ -126,6 +112,44 @@ class DetailChatViewController: UIViewController {
         }
     }
     
+    @objc func addTapped() {
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func sendMessage() {
+        let message = textField.text
+        presenter?.sendMessage(message: message!)
+        
+        
+        textField.text = ""
+        sendButton.isEnabled = false
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+       return false
+    }
+}
+
+//MARK:- протокол UITextFieldDelegate
+extension DetailChatViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    //позволяет дизэйблить кнопку отправки, если textField пуст
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let oldText = textField.text!
+        let stringRange = Range(range, in:oldText)!
+        let newText = oldText.replacingCharacters(in: stringRange, with: string)
+        
+        if newText.isEmpty {
+            sendButton.isEnabled = false
+        } else {
+            sendButton.isEnabled = true
+        }
+        return true
+    }
 }
 
 //MARK:- протокол UITableViewDataSource
@@ -152,10 +176,10 @@ extension DetailChatViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        inputTextField.endEditing(true)
-    }
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        textField.endEditing(true)
+//    }
 }
 
 //MARK:- протокол DetailChatPresenterOutput
@@ -164,17 +188,23 @@ extension DetailChatViewController: DetailChatPresenterOutput {
     func reloadData() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            self.tableView.scrollToRow(at: IndexPath(row: ((self.presenter?.numberOfEntities())! - 1), section: 0), at: UITableViewScrollPosition.bottom, animated: false)
+            //self.tableView.scrollToRow(at: IndexPath(row: ((self.presenter?.numberOfEntities())! - 1), section: 0), at: UITableViewScrollPosition.bottom, animated: false)
         }
     }
     
+    func scroll(indexPath: IndexPath) {
+        DispatchQueue.main.async {
+            self.tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.bottom, animated: false)
+        }
+    }
+    
+    //методы для FRC
     func beginUpdates() {
         tableView.beginUpdates()
     }
     
     func insert(at: IndexPath) {
         tableView.insertRows(at: [at], with: .fade)
-        self.tableView.scrollToRow(at: IndexPath(row: ((self.presenter?.numberOfEntities())! - 1), section: 0), at: UITableViewScrollPosition.bottom, animated: false)
     }
     
     func delete(at: IndexPath) {
@@ -182,7 +212,8 @@ extension DetailChatViewController: DetailChatPresenterOutput {
     }
     
     func move(at: IndexPath, to: IndexPath) {
-        tableView.moveRow(at: at, to: to)
+        tableView.deleteRows(at: [at], with: .automatic)
+        tableView.insertRows(at: [to], with: .fade)
     }
     
     func update(at: IndexPath) {

@@ -10,15 +10,26 @@ import Foundation
 
 class OperationsManager {
     
-    private static let operationQueue = OperationQueue()
-    
-    class func addOperation (operation: Operation, cancellingQueue: Bool ) {
+    private static let firstOperationQueue = OperationQueue()
+    class func addOperationToFirstQueue (operation: Operation, cancellingQueue: Bool ) {
         
         if cancellingQueue {
-            operationQueue.cancelAllOperations()
+            firstOperationQueue.cancelAllOperations()
         }
         
-        operationQueue.maxConcurrentOperationCount = 1
-        operationQueue.addOperation(operation)
+        firstOperationQueue.maxConcurrentOperationCount = 1
+        firstOperationQueue.addOperation(operation)
+    }
+    
+    
+    private static let secondOperationQueue = OperationQueue()
+    class func addOperationToSecondQueue (operation: Operation, cancellingQueue: Bool) {
+        
+        if cancellingQueue {
+            secondOperationQueue.cancelAllOperations()
+        }
+        
+        secondOperationQueue.maxConcurrentOperationCount = 1
+        secondOperationQueue.addOperation(operation)
     }
 }

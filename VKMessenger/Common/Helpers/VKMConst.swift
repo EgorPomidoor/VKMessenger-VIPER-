@@ -18,6 +18,7 @@ class VKMConst {
         static let kMessage = "messages.getDialogs"
         static let kUser = "users.get"
         static let kDetailChat = "messages.getHistory"
+        static let kSendMes = "messages.send"
     }
     
     class URLArguments {
@@ -26,6 +27,8 @@ class VKMConst {
         static let kFields = "fields"
         static let kOffset = "offset"
         static let kUserId = "user_id"
+        static let kPeerId = "peer_id"
+        static let kRandomId = "random_id"
     }
     
 }

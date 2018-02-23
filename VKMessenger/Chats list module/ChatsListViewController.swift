@@ -95,6 +95,8 @@ extension ChatsListViewController: UITableViewDataSource, UITableViewDelegate{
         tableView.deselectRow(at: indexPath, animated: true)
         
         if let model = presenter!.entityAt(indexPath: indexPath) as? Chat {
+             model.messages?.count
+            
             if model.type == "Dialogue" {
                 router?.showDetails(idForRequest: model.userID, currentChatID: model.id)
             } else {

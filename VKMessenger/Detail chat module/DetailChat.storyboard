@@ -48,6 +48,9 @@
                                                 <integer key="value" value="10"/>
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="sendMessage" destination="KwE-KT-i6j" eventType="touchUpInside" id="ejs-l0-771"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -78,7 +81,9 @@
                     </view>
                     <connections>
                         <outlet property="movableConstraint" destination="P5o-nD-DbH" id="fQU-52-NYq"/>
+                        <outlet property="sendButton" destination="qZF-m1-wQD" id="veu-vk-IWL"/>
                         <outlet property="tableView" destination="iOy-F1-K0q" id="boe-PH-s0V"/>
+                        <outlet property="textField" destination="5iQ-2s-KUX" id="Vgw-aA-D3A"/>
                         <outlet property="viewForTextField" destination="Pni-vx-W5e" id="38x-RE-5gP"/>
                     </connections>
                 </viewController>

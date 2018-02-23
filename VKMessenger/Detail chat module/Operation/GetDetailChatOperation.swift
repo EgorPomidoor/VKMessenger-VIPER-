@@ -11,7 +11,7 @@ import CoreData
 
 class GetDetailChatOperation: Operation {
     
-    var success: (NSMutableArray) -> Void
+    var success: (NSMutableArray) -> Void //NSMutableArray не нужен (так как убрали обычные модели)
     var failure: (Int) -> Void
     var count: Int
     var offset: Int

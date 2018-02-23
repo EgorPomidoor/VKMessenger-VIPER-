@@ -37,6 +37,18 @@ class AuthViewController: UIViewController {
             navController.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor:UIColor.black]
             
             self.present(navController, animated: true, completion: nil)
+            
+            
+            API_WRAPPER.getLongPollServer(success: { (response) in
+                let key = response["response"]["key"].stringValue
+                let server = response["response"]["server"].stringValue
+                let ts = response["response"]["ts"].stringValue
+                
+                LongPollService.startLongPoll(key: key, server: server, ts: ts)
+                
+            }, failure: {(error) in
+                print (error)
+            })
         }
         
     }, failure: {[weak self] in

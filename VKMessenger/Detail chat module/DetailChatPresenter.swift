@@ -53,6 +53,11 @@ extension DetailChatPresenter: DetailChatPresenterInput {
         interactor?.getData(offset: offset)
     }
     
+    func sendMessage(message: String) {
+        let randomNumber = Int(arc4random())
+        interactor?.sendMessage(id: idForFRC, randomId: randomNumber, message: message)
+    }
+    
     func numberOfEntities() -> Int {
         if fetchedResultsController == nil {
             return 0
@@ -68,6 +73,7 @@ extension DetailChatPresenter: DetailChatPresenterInput {
             return fetchedResultsController!.object(at: indexPath)
         }
     }
+    
 }
 
 
@@ -82,10 +88,16 @@ extension DetailChatPresenter: DetailChatInteractorOutput {
             self.output?.reloadData()
             dialogIsEmpty = false
         }
+        
+        output?.scroll(indexPath: IndexPath(row: (fetchedResultsController?.fetchedObjects?.count)! - 1, section: 0))
     }
     
     func failure(code: Int) {
         print("код ошибки: \(code)")
+    }
+    
+    func messageHasSentSuccessfully() {
+        output?.scroll(indexPath: IndexPath(row: (fetchedResultsController?.fetchedObjects?.count)! - 1, section: 0))
     }
 }
 

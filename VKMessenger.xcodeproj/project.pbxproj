@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		37A5881DB5BE549067A0B277 /* Pods_VKMessenger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 02C2F8891605A0C345D95513 /* Pods_VKMessenger.framework */; };
+		CE153660203E1E6900E00FE1 /* SendMessageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15365F203E1E6900E00FE1 /* SendMessageOperation.swift */; };
+		CE153662203F068E00E00FE1 /* LongPollService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE153661203F068E00E00FE1 /* LongPollService.swift */; };
 		CE1F7B222012A25700932657 /* CoreDataChatFabric.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F7B212012A25700932657 /* CoreDataChatFabric.swift */; };
 		CE1F7B242012A5C300932657 /* DateConvertion.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F7B232012A5C300932657 /* DateConvertion.swift */; };
 		CE1F7B382013937500932657 /* VKMChatTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE1F7B362013937500932657 /* VKMChatTableViewCell.swift */; };
@@ -57,6 +59,8 @@
 /* Begin PBXFileReference section */
 		02C2F8891605A0C345D95513 /* Pods_VKMessenger.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VKMessenger.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B60A5E73F24610FB9909BDD3 /* Pods-VKMessenger.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VKMessenger.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VKMessenger/Pods-VKMessenger.debug.xcconfig"; sourceTree = "<group>"; };
+		CE15365F203E1E6900E00FE1 /* SendMessageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageOperation.swift; sourceTree = "<group>"; };
+		CE153661203F068E00E00FE1 /* LongPollService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LongPollService.swift; sourceTree = "<group>"; };
 		CE1F7B212012A25700932657 /* CoreDataChatFabric.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataChatFabric.swift; sourceTree = "<group>"; };
 		CE1F7B232012A5C300932657 /* DateConvertion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateConvertion.swift; sourceTree = "<group>"; };
 		CE1F7B362013937500932657 /* VKMChatTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VKMChatTableViewCell.swift; sourceTree = "<group>"; };
@@ -218,6 +222,7 @@
 			children = (
 				CE90F194200B80250060B8FA /* VKMAuthService.swift */,
 				CE90F183200B7A3E0060B8FA /* AuthViewController.swift */,
+				CE153661203F068E00E00FE1 /* LongPollService.swift */,
 				CE90F185200B7A3E0060B8FA /* Main.storyboard */,
 			);
 			path = "Authorization module";
@@ -259,6 +264,7 @@
 			isa = PBXGroup;
 			children = (
 				CEB0221B202FA26E0010FAFF /* GetDetailChatOperation.swift */,
+				CE15365F203E1E6900E00FE1 /* SendMessageOperation.swift */,
 			);
 			path = Operation;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				CEF92A2F2012156E00B207F9 /* Messenger.xcdatamodeld in Sources */,
 				CEB02217202F9EB40010FAFF /* DetailChatModel.swift in Sources */,
 				CEC30894201754F700B8E618 /* GetChatOperation.swift in Sources */,
+				CE153662203F068E00E00FE1 /* LongPollService.swift in Sources */,
 				CEFE00782028AE1A0002840C /* ChatsListInterfaces.swift in Sources */,
 				CEFE007C2028B89B0002840C /* ChatsListPresenter.swift in Sources */,
 				CEF92A312012518200B207F9 /* DataManager.swift in Sources */,
@@ -481,6 +488,7 @@
 				CE911FFC2029B7000008410D /* DetailChatRouter.swift in Sources */,
 				CE90F182200B7A3E0060B8FA /* AppDelegate.swift in Sources */,
 				CE31A13520110C48005209DD /* VKMConst.swift in Sources */,
+				CE153660203E1E6900E00FE1 /* SendMessageOperation.swift in Sources */,
 				CE1F7B382013937500932657 /* VKMChatTableViewCell.swift in Sources */,
 				CEC30892201753F500B8E618 /* OperationsManager.swift in Sources */,
 				CEBC9054203A3CB20036F91E /* VKMChatTableViewCellWithoutPhoto.swift in Sources */,

@@ -26,7 +26,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oh2-iV-fMF">
-                        <rect key="frame" x="16" y="19" width="115" height="106.5"/>
+                        <rect key="frame" x="75" y="19" width="115" height="106.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сообщение" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsB-hF-S3k">
                                 <rect key="frame" x="8" y="8" width="99" height="90.5"/>
@@ -43,20 +43,30 @@
                             <constraint firstItem="gsB-hF-S3k" firstAttribute="top" secondItem="Oh2-iV-fMF" secondAttribute="topMargin" id="qto-ht-0W8"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IRK-M6-iT0">
+                        <rect key="frame" x="10" y="47" width="50" height="50"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="50" id="5cg-L9-5zX"/>
+                            <constraint firstAttribute="width" constant="50" id="Syg-3L-J7U"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Oh2-iV-fMF" secondAttribute="trailing" constant="50" id="1hX-GZ-fSj"/>
+                    <constraint firstItem="Oh2-iV-fMF" firstAttribute="leading" secondItem="IRK-M6-iT0" secondAttribute="trailing" constant="15" id="CyJ-Qh-OE0"/>
                     <constraint firstAttribute="bottom" secondItem="Oh2-iV-fMF" secondAttribute="bottom" constant="19" id="FPh-qg-rw8"/>
-                    <constraint firstItem="Oh2-iV-fMF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="cWP-mf-aqZ"/>
+                    <constraint firstItem="IRK-M6-iT0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="OEV-s2-Ujm"/>
+                    <constraint firstItem="IRK-M6-iT0" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="b30-Rn-bIf"/>
                     <constraint firstItem="Oh2-iV-fMF" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="19" id="pTK-WR-9TM"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="avatarView" destination="IRK-M6-iT0" id="0jO-fH-DKp"/>
                 <outlet property="lableView" destination="Oh2-iV-fMF" id="3su-YM-o1u"/>
                 <outlet property="messageLabel" destination="gsB-hF-S3k" id="utd-dA-weH"/>
             </connections>
-            <point key="canvasLocation" x="62" y="148.5"/>
+            <point key="canvasLocation" x="-75" y="144"/>
         </tableViewCell>
     </objects>
 </document>

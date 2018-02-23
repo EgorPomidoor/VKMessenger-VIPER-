@@ -52,4 +52,32 @@ class API_WRAPPER {
         })
         task.resume()
     }
+    
+    class func sendMessage (id: Int64, randomId: Int, message: String, success: @escaping (JSON) -> Void, failure: @escaping (Int) -> Void) {
+        let urlString = VKMConst.APIService.kBaseURL + VKMConst.URLMethods.kSendMes + "?" + VKMConst.URLArguments.kUserId + "=\(id)&" + VKMConst.URLArguments.kRandomId + "=\(randomId)&message=\(message)&v=5.68&access_token=\(VKMAuthService.sharedInstance.getAccessToken())"
+        let url = URL(string: urlString)!
+        let request = URLRequest(url: url)
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            complitionHandler(success: success, failure: failure, data: data, response: response, error: error)
+        }
+        task.resume()
+    }
+    
+    class func getLongPollServer(success: @escaping (JSON) -> Void, failure: @escaping (Int) -> Void) {
+        let urlString = VKMConst.APIService.kBaseURL + "messages.getLongPollServer?lp_version=2&v=5.73&access_token=\(VKMAuthService.sharedInstance.getAccessToken())"
+        let url = URL(string: urlString)!
+        let task = URLSession.shared.dataTask(with: url) { (data , response, error) in
+            complitionHandler(success: success, failure: failure, data: data, response: response, error: error)
+        }
+        task.resume()
+    }
+    
+    class func startLongPoll (key: String, server: String, ts: String, success: @escaping (JSON) -> Void, failure: @escaping (Int) -> Void) {
+        let urlString = "https://\(server)?act=a_check&key=\(key)&ts=\(ts)&wait=25&mode=2&version=2"
+        let url = URL(string: urlString)!
+        let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
+            complitionHandler(success: success, failure: failure, data: data, response: response, error: error)
+        }
+        task.resume()
+    }
 }
