@@ -31,7 +31,13 @@ class ChatsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
-        presenter?.getData(offset: 0)
+        //presenter?.getData(offset: 0)
+    }
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super .viewWillAppear(true)
+       presenter?.getData(offset: 0)
     }
     
     private func setUp () {

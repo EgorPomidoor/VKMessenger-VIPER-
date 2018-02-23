@@ -58,7 +58,15 @@ class VKMChatTableViewCell: UITableViewCell {
         snippetLabel.text = model.snippet
         dateLabel.text = DateConvertion.convert(date: model.timestamp)
         
-        if model.out == 1 && model.type == "Dialogue" {
+//        let allElements = model.messages!.sorted(by:{ ($0 as! DetailChat).date < ($1 as! DetailChat).date })
+//        let count = allElements.count
+//        let modell = model.messages?.count == 0 ? nil : allElements[count - 1] as? DetailChat
+//        
+//        snippetLabel.text = model.messages?.count == 0 ? model.snippet : modell?.body
+//        dateLabel.text =  model.messages?.count == 0 ? DateConvertion.convert(date: model.timestamp) : DateConvertion.convert(date: (modell?.date)!)
+        
+        
+        if model.out == 1 && model.type == "Dialogue" || (model.out == 1 && model.type == "Multichat") {
             
             let id = Int64(VKMAuthService.sharedInstance.getMyID())
             let user = CoreDataUserFabric.getUser(id: id!, contex: CoreDataManager.sharedInstance.getMainContext())

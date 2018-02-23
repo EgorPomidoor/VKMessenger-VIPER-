@@ -188,7 +188,6 @@ extension DetailChatViewController: DetailChatPresenterOutput {
     func reloadData() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            //self.tableView.scrollToRow(at: IndexPath(row: ((self.presenter?.numberOfEntities())! - 1), section: 0), at: UITableViewScrollPosition.bottom, animated: false)
         }
     }
     
@@ -204,7 +203,7 @@ extension DetailChatViewController: DetailChatPresenterOutput {
     }
     
     func insert(at: IndexPath) {
-        tableView.insertRows(at: [at], with: .fade)
+        tableView.insertRows(at: [at], with: .automatic)
     }
     
     func delete(at: IndexPath) {

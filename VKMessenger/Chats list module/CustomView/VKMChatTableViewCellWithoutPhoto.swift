@@ -53,6 +53,14 @@ class VKMChatTableViewCellWithoutPhoto: UITableViewCell {
         snippetLabel.text = model.snippet
         dateLabel.text = DateConvertion.convert(date: model.timestamp)
         
+//        let allElements = model.messages!.sorted(by:{ ($0 as! DetailChat).date < ($1 as! DetailChat).date })
+//        let count = allElements.count
+//        let modell = model.messages?.count == 0 ? nil : allElements[count - 1] as? DetailChat
+//
+//        snippetLabel.text = model.messages?.count == 0 ? model.snippet : modell?.body
+//        dateLabel.text =  model.messages?.count == 0 ? DateConvertion.convert(date: model.timestamp) : DateConvertion.convert(date: (modell?.date)!)
+        
+        
         readStateImageView.alpha = (model.out == 1 && model.readState == 0) ? 1 : 0
         readStateView.alpha = (model.out == 0 && model.readState == 0) ? 0.3 : 0
 

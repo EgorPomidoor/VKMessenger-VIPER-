@@ -114,6 +114,7 @@ extension DetailChatPresenter: NSFetchedResultsControllerDelegate {
         switch type {
         case .insert:
             output?.insert(at: newIndexPath!)
+            output?.scroll(indexPath: IndexPath(row: (fetchedResultsController?.fetchedObjects?.count)! - 1, section: 0))
         case .update:
             output?.update(at: indexPath!)
         case .move:
